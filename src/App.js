@@ -3,6 +3,7 @@ import './App.css';
 import User from './components/user/User';
 import UserList from './components/user/UserList';
 import {useState} from 'react';
+
 function App() {
 const[data,setData]=useState([]);
 const setUserData=(name,age)=>{
@@ -14,7 +15,7 @@ const setUserData=(name,age)=>{
  console.log(data);
 }
 let content = (
-  <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
+  <p style={{ textAlign: 'center' }}>No user</p>
 );
 
 if (data.length > 0) {
@@ -30,6 +31,7 @@ if (data.length > 0) {
      <section id="display">
      {content}
      </section>
+     
     </div>
   );
 }
