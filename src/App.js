@@ -6,10 +6,10 @@ import {useState} from 'react';
 
 function App() {
 const[data,setData]=useState([]);
-const setUserData=(name,age)=>{
+const setUserData=(name,age,college)=>{
   setData(prevData => {
     const updatedData = [...prevData];
-    updatedData.unshift({ name:name,age:age, id: Math.random().toString() });
+    updatedData.unshift({ name:name,age:age,college:college, id: Math.random().toString() });
     return updatedData;
   });
  console.log(data);
