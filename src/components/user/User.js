@@ -1,11 +1,14 @@
-import React,{useState,useRef} from 'react';
+import React,{useState,useEffect} from 'react';
 import ErrorModule from '../UI/ErrorModule';
 import Button from '../UI/Button/Buttton';
 const User=(props)=>{
     const[name,setName]=useState("");
     const[age,setAge]=useState("");
-    const collegnameRef=useRef();
-    console.log(collegnameRef);
+    const[college,setCollege]=useState('');
+    const[collegeNameValid,setCollegeNameValid]=useState(false);
+    useEffect(()=>{
+        setCollegeNameValid(college.trim().length>0);
+    },[college]);
     
     const[error,setError]=useState();
     const setNameHandler=(e)=>{
@@ -15,14 +18,17 @@ const User=(props)=>{
     const setAgeHandler=(e)=>{
       setAge(e.target.value);
     }
+    const setCollegeHandler=(e)=>{
+        setCollege(e.target.value);
+    }
     const addUser=(e)=>{
         e.preventDefault();
-        const college=collegnameRef.current.value;
-        console.log(college);
-       if(name.trim().length===0 ||age.trim().length===0){
+       
+        
+       if(name.trim().length===0 ||age.trim().length===0||!collegeNameValid){
        setError({
         title:'invalid input',
-        message:'please check your name and age'
+        message:'please check your name and age or college name'
        });
        return;
        }
@@ -49,7 +55,7 @@ const User=(props)=>{
         <input className='input' onChange={setAgeHandler}></input><br/>
 
         <label >College Name</label>
-        <input className='input' ref={collegnameRef}></input><br/>
+        <input className='input' onChange={setCollegeHandler}></input><br/>
 
         <Button type="submit">AddUser</Button>
         </form>
